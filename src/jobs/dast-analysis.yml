@@ -1,0 +1,114 @@
+description: >
+  Calls the Dast scan command to perform the analysis.
+
+executor: default
+
+parameters:
+  project_name:
+    description: The project name that will be displayed on the dashboard
+    type: string
+    default: ""
+  integration_name:
+    description: Integration Name (e.g. Provider)
+    type: string
+    default: "CircleCI"
+  client_id:
+    description: SOOS Client Id
+    type: string
+  api_key:
+    description: SOOS API Key
+    type: string
+  scan_mode:
+    description: "SOOS DAST scan mode. Values available: baseline (Default), fullscan, and apiscan"
+    type: string
+    default: "baseline"
+  debug:
+    description: Show debug messages
+    type: boolean
+    default: false
+  ajax_spider:
+    description: Enable the Ajax spider in addition to the traditional one
+    type: boolean
+    default: false
+  api_base_url:
+    description: SOOS API URL
+    type: string
+    default: "https://api.soos.io/api/"
+  rules:
+    description: rules file to use to INFO, IGNORE or FAIL warnings
+    type: string
+    default: ""
+  context_file:
+    description: context file which will be loaded prior to scanning the target
+    type: string
+    default: ""
+  context_user:
+    description: Username to use for authenticated scans - must be defined in the given context file
+    type: string
+    default: ""
+  fullscan_minutes:
+    type: string
+    default: ""
+  apiscan_format:
+    description: "Target API format: openapi, soap, or graphql. Required for scan_mode: apiscan"
+    type: string
+    default: ""
+  level:
+    description: "Minimum level to show: PASS (Default), IGNORE, INFO, WARN or FAIL"
+    type: string
+    default: "PASS"
+  target_url:
+    description: "Target URL including the protocol, eg https://www.example.com"
+    type: string
+  branch_uri:
+    description: Set the branch URI
+    type: string
+    default: ""
+  operating_environment:
+    description: Set the Operating Environment
+    type: string
+    default: ""
+  zap_options:
+    description: ZAP Additional Options
+    type: string
+    default: ""
+  request_cookies:
+    description: Set Cookie values for the requests to the target URL
+    type: string
+    default: ""
+  request_headers:
+    description: Set extra Header requests
+    type: string
+    default: ""
+  sarif:
+    description: Upload SARIF Report to GitHub
+    type: boolean
+    default: false
+  github_pat:
+    description: GitHub Personal Authorization Token. Used by SARIF Report
+    type: string
+    default: ""
+steps:
+  - run-dast-analysis:
+      client_id: '<<parameters.client_id>>'
+      api_key: '<<parameters.api_key>>'
+      project_name: '<<parameters.project_name>>'
+      integration_name: '<<parameters.integration_name>>'
+      scan_mode: '<<parameters.scan_mode>>'
+      debug: '<<parameters.debug>>'
+      ajax_spider: '<<parameters.ajax_spider>>'
+      api_base_url: '<<parameters.api_base_url>>'
+      rules: '<<parameters.rules>>'
+      context_file: '<<parameters.context_file>>'
+      context_user: '<<parameters.context_user>>'
+      fullscan_minutes: '<<parameters.fullscan_minutes>>'
+      apiscan_format: '<<parameters.apiscan_format>>'
+      level: '<<parameters.level>>'
+      target_url: '<<parameters.target_url>>'
+      branch_uri: '<<parameters.branch_uri>>'
+      operating_environment: '<<parameters.operating_environment>>'
+      zap_options: '<<parameters.zap_options>>'
+      request_cookies: '<<parameters.request_cookies>>'
+      request_headers: '<<parameters.request_headers>>'
+      sarif: '<<parameters.sarif>>'
+      github_pat: '<<parameters.github_pat>>'
