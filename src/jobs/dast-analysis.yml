@@ -54,7 +54,7 @@ parameters:
     description: "Target API format: openapi, soap, or graphql. Required for scan_mode: apiscan"
     type: enum
     enum: ["openapi", "soap", "graphql"]
-    default: ""
+    default: "openapi"
   level:
     description: "Minimum level to show: PASS (Default), IGNORE, INFO, WARN or FAIL"
     type: enum
