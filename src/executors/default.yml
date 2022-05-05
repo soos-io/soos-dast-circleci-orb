@@ -3,9 +3,11 @@ description: >
 docker:
   - image: 'soosio/dast:<<parameters.tag>>'
 parameters:
-  default: "latest"
-  description: >
-    Pick a specific version of soosio/dast:
-    https://hub.docker.com/r/soosio/dast/tags
-  type: string
+  tag:
+    default: "latest"
+    type: string
+    description: >
+      Pick a specific version of soosio/dast:
+      https://hub.docker.com/r/soosio/dast/tags
+
     
