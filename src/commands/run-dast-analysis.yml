@@ -19,7 +19,8 @@ parameters:
     type: string
   scan_mode:
     description: "SOOS DAST scan mode. Values available: baseline (Default), fullscan, and apiscan"
-    type: string
+    type: enum
+    enum: ["baseline", "fullscan", "apiscan"]
     default: "baseline"
   debug:
     description: Show debug messages
@@ -50,11 +51,13 @@ parameters:
     default: ""
   apiscan_format:
     description: "Target API format: openapi, soap, or graphql. Required for scan_mode: apiscan"
-    type: string
+    type: enum
+    enum: ["openapi", "soap", "graphql"]
     default: ""
   level:
     description: "Minimum level to show: PASS (Default), IGNORE, INFO, WARN or FAIL"
-    type: string
+    type: enum
+    enum: ["PASS", "IGNORE", "INFO", "WARN", "FAIL"]
     default: "PASS"
   target_url:
     description: "Target URL including the protocol, eg https://www.example.com"
