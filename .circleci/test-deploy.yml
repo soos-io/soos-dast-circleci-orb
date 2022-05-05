@@ -15,6 +15,12 @@ jobs:
         - image: cimg/base:current
       steps:
         - checkout
+        - dast/run-dast-analysis:
+            client_id: ${SOOS_CLIENT_ID}
+            api_key: ${SOOS_API_KEY}
+            project_name: "test-circleci"
+            api_base_url: "https://dev-api.soos.io/api/"
+            target_url: "https://soos.io"
 workflows:
   test-deploy:
     jobs:
