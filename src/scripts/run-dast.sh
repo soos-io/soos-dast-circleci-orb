@@ -52,5 +52,4 @@ fi
 if [  "$SOOS_GENERATE_SARIF_REPORT" -eq 1 ]; then
     PARAMS+=" --sarif=True --gpat ${SOOS_GITHUB_PAT}"
 fi
-set -x
 python3 main.py ${SOOS_TARGET_URL} ${PARAMS}
