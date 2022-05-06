@@ -14,10 +14,12 @@ parameters:
     default: "CircleCI"
   client_id:
     description: SOOS Client Id
-    type: string
+    type: env_var_name
+    default: SOOS_CLIENT_ID
   api_key:
     description: SOOS API Key
-    type: string
+    type: env_var_name
+    default: SOOS_API_KEY
   scan_mode:
     description: "SOOS DAST scan mode. Values available: baseline (Default), fullscan, and apiscan"
     type: enum
