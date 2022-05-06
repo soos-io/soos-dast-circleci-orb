@@ -1,5 +1,5 @@
 description: >
-  This command echos "Hello World" using file inclusion.
+  This command includes the shell script to start the DAST Analysis.
 # What will this command do?
 # Descriptions should be short, simple, and clear.
 parameters:
