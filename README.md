@@ -1,27 +1,149 @@
-# Orb Template
+# SOOS DAST Analysis CircleCI
+
+The SOOS DAST Analysis for CircleCI implements the SOOS DAST Analysis's integration for CircleCI.
+
+## How to Use
+
+Currently, you can integrate the SOOS DAST Analysis with CircleCI using the [SOOS DAST Analysis CircleCI Orb](https://circleci.com/developer/orbs) in your workflow file. 
+
+### Parameters
+| Name              | Required                    | Description                                                                                          |
+|-------------------|-----------------------------|------------------------------------------------------------------------------------------------------|
+| `client_id`       | Yes                         | SOOS client id                                                                                       |
+| `api_key`         | Yes                         | SOOS API key                                                                                         |
+| `project_name`    | Yes                         | SOOS project name                                                                                    |
+| `api_url`         | Yes                         | SOOS API URL. By Default: `https://api.soos.io/api/`                                                 |
+| `debug`           |                             | show debug messages                                                                                  |
+| `ajax_spider`     |                             | use the Ajax spider in addition to the traditional one                                               |
+| `rules`           |                             | rules file to use for `INFO`, `IGNORE` or `FAIL` warnings                                            |
+| `context_file`    |                             | context file which will be loaded prior to scanning the target. Required for authenticated URLs      |
+| `context_user`    |                             | username to use for authenticated scans - must be defined in the given context file                  |
+| `scan_mode`       |                             | SOOS DAST scan mode. Values available: baseline (Default), fullscan, and apiscan                     |
+| `fullscan_minutes`| Required by `Full Analysis` | the number of minutes for spider to run                                                              |
+| `apiscan_format`  | Required by `API Analysis`  | target API format: `openapi`, `soap`, or `graphql`                                                   |
+| `level`           |                             | minimum level to show: `PASS`, `IGNORE`, `INFO`, `WARN` or `FAIL`                                    |
+| `target_url`      | Yes                         | target URL including the protocol, eg https://www.example.com                                        |
 
 
-[![CircleCI Build Status](https://circleci.com/gh/soos-io/soos-dast-circleci-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/soos-io/soos-dast-circleci-orb) [![CircleCI Orb Version](https://badges.circleci.com/orbs/soos-io/dast.svg)](https://circleci.com/orbs/registry/orb/soos-io/dast) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/soos-io/soos-dast-circleci-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+### Jobs
+There's currently one main Job called dast-analysis which you can cofigure to perform a scan in three diferent ways:
+- [Baseline Analysis](#baseline-analysis)
+- [Full Analysis](#full-analysis)
+- [API Analysis](#api-analysis)
 
+#### Baseline Analysis
+It runs the [ZAP](https://www.zaproxy.org/) spider against the specified target for (by default) 1 minute and then waits for the passive scanning to complete before reporting the results.
 
+This means that the script doesn't perform any actual ‘attacks’ and will run for a relatively short period of time (a few minutes at most).
 
-A project template for Orbs.
+By default, it reports all alerts as WARNings but you can specify a config file which can change any rules to `FAIL` or `IGNORE`.
 
-This repository is designed to be automatically ingested and modified by the CircleCI CLI's `orb init` command.
+This mode is intended to be ideal to run in a `CI/CD` environment, even against production sites.
 
-_**Edit this area to include a custom title and description.**_
+**Example**:
+``` yaml
+version: 2.1
 
----
+orbs:
+  soos: soos-io/dast@x.y.z
+  
+jobs:
+  build:
+    steps:
+      - checkout
+      # ... steps for building/testing app ...
+      - soos/dast-analysis:
+          client_id: $SOOS_CLIENT_ID
+          api_key: $SOOS_API_KEY
+          project_name: '...'
+          scan_mode: 'baseline'
+          debug: true
+          ajax_spider: true
+          api_base_url: 'https://api.soos-io/api/'
+          rules: '...'
+          context_file: '...'
+          context_user: '...'
+          fullscan_minutes: '...'
+          apiscan_format: '...'
+          level: '...'
+          target_url: '...'
+```
 
-## Resources
+#### Full Analysis
+It runs the [ZAP](https://www.zaproxy.org/) spider against the specified target (by default with no time limit) followed by an optional ajax spider scan and then a full active scan before reporting the results.
 
-[CircleCI Orb Registry Page](https://circleci.com/orbs/registry/orb/soos-io/dast) - The official registry page of this orb for all versions, executors, commands, and jobs described.
+This means that the script does perform actual ‘attacks’ and can potentially run for a long period of time.
 
-[CircleCI Orb Docs](https://circleci.com/docs/2.0/orb-intro/#section=configuration) - Docs for using, creating, and publishing CircleCI Orbs.
+By default, it reports all alerts as WARNings but you can specify a config file which can change any rules to FAIL or IGNORE. The configuration works in a very similar way as the [Baseline Analysis](#baseline-analysis)
 
-### How to Contribute
+**Example**:
+``` yaml
+version: 2.1
 
-We welcome [issues](https://github.com/soos-io/soos-dast-circleci-orb/issues) to and [pull requests](https://github.com/soos-io/soos-dast-circleci-orb/pulls) against this repository!
+orbs:
+  soos: soos-io/dast@x.y.z
+  
+jobs:
+  build:
+    steps:
+      - checkout
+      # ... steps for building/testing app ...
+      - soos/dast-analysis:
+          client_id: $SOOS_CLIENT_ID
+          api_key: $SOOS_API_KEY
+          project_name: '...'
+          scan_mode: 'fullscan'
+          debug: true
+          ajax_spider: true
+          api_base_url: 'https://api.soos-io/api/'
+          rules: '...'
+          context_file: '...'
+          context_user: '...'
+          fullscan_minutes: '...'
+          level: '...'
+          target_url: '...'
+```
+
+#### API Analysis
+It is tuned for performing scans against APIs defined by `OpenAPI`, `SOAP`, or `GraphQL` via either a local file or a URL.
+
+It imports the definition that you specify and then runs an `Active Scan` against the URLs found. The `Active Scan` is tuned to APIs, so it doesn't bother looking for things like `XSSs`.
+
+It also includes 2 scripts that:
+- Raise alerts for any HTTP Server Error response codes
+- Raise alerts for any URLs that return content types that are not usually associated with APIs
+
+**Example**:
+``` yaml
+version: 2.1
+
+orbs:
+  soos: soos-io/dast@x.y.z
+  
+jobs:
+  build:
+    steps:
+      - checkout
+      # ... steps for building/testing app ...
+      - soos/dast-analysis:
+          client_id: $SOOS_CLIENT_ID
+          api_key: $SOOS_API_KEY
+          scan_mode: 'apiscan'
+          project_name: '...'
+          debug: true
+          ajax_spider: true
+          api_base_url: 'https://api.soos-io/api/'
+          rules: '...'
+          context_file: '...'
+          context_user: '...'
+          apiscan_format: 'openapi'
+          level: '...'
+          target_url: '...'
+```
+
+## References
+ - [ZAP](https://www.zaproxy.org/)
+
 
 ### How to Publish An Update
 1. Merge pull requests with desired changes to the main branch.
