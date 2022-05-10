@@ -1,6 +1,6 @@
 #!/bin/bash
 cd /zap/ || return
-if [ -n "$SOOS_PROJECT_NAME" ]; then
+if [ -z "$SOOS_PROJECT_NAME" ]; then
     SOOS_PROJECT_NAME="${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"
 fi
 PARAMS="--clientId ${!SOOS_CLIENT_ID_VAR_NAME} --apiKey ${!SOOS_API_KEY_VAR_NAME} --projectName ${SOOS_PROJECT_NAME} --scanMode ${SOOS_SCAN_MODE} --apiURL ${SOOS_API_BASE_URL} --integrationName ${SOOS_INTEGRATION_NAME} --commitHash ${CIRCLE_SHA1} --branchName ${CIRCLE_BRANCH}"
