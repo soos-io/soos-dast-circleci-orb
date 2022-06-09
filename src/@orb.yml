@@ -1,15 +1,9 @@
 version: 2.1
 
 description: >
-  SOOS DAST Orb helps you scan your web apps & APIS to find vulnerabilities in them.
-# What will your orb allow users to accomplish?
-# Descriptions should be short, simple, and informative.
+  SOOS DAST Orb helps you scan your web apps & APIs to find vulnerabilities in them.
 
-# This information will be displayed in the orb registry and is not mandatory.
 display:
   home_url: "https://soos.io/"
   source_url: "https://github.com/soos-io/soos-dast-circleci-orb"
 
-# If your orb requires other orbs, you can import them like this. Otherwise remove the "orbs" stanza.
-# orbs:
-#  hello: circleci/hello-build@0.0.5

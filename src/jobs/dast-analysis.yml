@@ -8,10 +8,6 @@ parameters:
     description: The project name that will be displayed on the dashboard
     type: string
     default: ""
-  integration_name:
-    description: Integration Name (e.g. Provider)
-    type: string
-    default: "CircleCI"
   client_id:
     description: SOOS Client Id
     type: env_var_name
@@ -98,7 +94,6 @@ steps:
       client_id: '<<parameters.client_id>>'
       api_key: '<<parameters.api_key>>'
       project_name: '<<parameters.project_name>>'
-      integration_name: '<<parameters.integration_name>>'
       scan_mode: '<<parameters.scan_mode>>'
       debug: '<<parameters.debug>>'
       ajax_spider: '<<parameters.ajax_spider>>'
