@@ -106,7 +106,7 @@ parameters:
     type: string
     default: ""
   auth_login_url:
-    description: 'Login url to use in auth apps.' 
+    description: 'Login url to use in auth apps.'
     type: string
     default: ""
   auth_username_field:
@@ -121,7 +121,7 @@ parameters:
     description: 'Submit button id to use in auth apps.'
     type: string
     default: ""
-  auth_submit_action: 
+  auth_submit_action:
     description: 'Submit action to perform on form filled. Possible values are click or submit.'
     type: string
     default: ""
