@@ -88,6 +88,50 @@ parameters:
     description: GitHub Personal Authorization Token. Used by SARIF Report
     type: string
     default: ""
+  report_request_headers:
+    description: 'Include request/response headers data in report.'
+    type: boolean
+    default: true
+  bearer_token:
+    description: 'Bearer token to include as authorization header in every request.'
+    type: string
+    default: ""
+  auth_username:
+    description: 'Username to use in auth apps.'
+    type: string
+    default: ""
+  auth_password:
+    description: 'Password to use in auth apps.'
+    type: string
+    default: ""
+  auth_login_url:
+    description: 'Login url to use in auth apps.'
+    type: string
+    default: ""
+  auth_username_field:
+    description: 'Username input id to use in auth apps.'
+    type: string
+    default: ""
+  auth_password_field:
+    description: 'Password input id to use in auth apps.'
+    type: string
+    default: ""
+  auth_submit_field:
+    description: 'Submit button id to use in auth apps.'
+    type: string
+    default: ""
+  auth_submit_action:
+    description: 'Submit action to perform on form filled. Possible values are click or submit.'
+    type: string
+    default: ""
+  oauth_token_url:
+    description: 'The fully qualified authentication URL that grants the access_token.'
+    type: string
+    default: ""
+  oauth_parameters:
+    description: 'Parameters to be added to the oauth token request. (eg: client_id:value, client_secret:value, grant_type:value).'
+    type: string
+    default: ""
 steps:
   - run:
       environment:
@@ -112,5 +156,16 @@ steps:
         SOOS_REQUEST_HEADERS: '<<parameters.request_headers>>'
         SOOS_GENERATE_SARIF_REPORT: '<<parameters.sarif>>'
         SOOS_GITHUB_PAT: '<<parameters.github_pat>>'
+        SOOS_REPORT_REQUEST_HEADERS: '<<parameters.report_request_headers>>'
+        SOOS_BEARER_TOKEN: '<<parameters.bearer_token>>'
+        SOOS_AUTH_USERNAME: '<<parameters.auth_username>>'
+        SOOS_AUTH_PASSWORD: '<<parameters.auth_password>>'
+        SOOS_AUTH_LOGIN_URL: '<<parameters.auth_login_url>>'
+        SOOS_AUTH_USERNAME_FIELD: '<<parameters.auth_username_field>>'
+        SOOS_AUTH_PASSWORD_FIELD: '<<parameters.auth_password_field>>'
+        SOOS_AUTH_SUBMIT_FIELD: '<<parameters.auth_submit_field>>'
+        SOOS_AUTH_SUBMIT_ACTION: '<<parameters.auth_submit_action>>'
+        SOOS_OAUTH_TOKEN_URL: '<<parameters.oauth_token_url>>'
+        SOOS_OAUTH_PARAMETERS: '<<parameters.oauth_parameters>>'
       name: Run DAST SOOS Analysis
       command: <<include(scripts/run-dast.sh)>>

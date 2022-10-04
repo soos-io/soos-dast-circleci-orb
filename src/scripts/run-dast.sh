@@ -54,4 +54,37 @@ fi
 if [  "$SOOS_GENERATE_SARIF_REPORT" -eq 1 ]; then
     PARAMS+=" --sarif=True --gpat ${SOOS_GITHUB_PAT}"
 fi
+if [  "$SOOS_REPORT_REQUEST_HEADERS" -eq 1 ]; then
+    PARAMS+=" --reportRequestHeaders=true"
+fi
+if [ -n "$SOOS_BEARER_TOKEN" ]; then
+    PARAMS+=" --bearerToken ${SOOS_BEARER_TOKEN}"
+fi
+if [ -n "$SOOS_AUTH_USERNAME" ]; then
+    PARAMS+=" --authUsername ${SOOS_AUTH_USERNAME}"
+fi
+if [ -n "$SOOS_AUTH_PASSWORD" ]; then
+    PARAMS+=" --authPassword ${SOOS_AUTH_PASSWORD}"
+fi
+if [ -n "$SOOS_AUTH_LOGIN_URL" ]; then
+    PARAMS+=" --authLoginURL ${SOOS_AUTH_LOGIN_URL}"
+fi
+if [ -n "$SOOS_AUTH_USERNAME_FIELD" ]; then
+    PARAMS+=" --authUsernameField ${SOOS_AUTH_USERNAME_FIELD}"
+fi
+if [ -n "$SOOS_AUTH_PASSWORD_FIELD" ]; then
+    PARAMS+=" --authPasswordField ${SOOS_AUTH_PASSWORD_FIELD}"
+fi
+if [ -n "$SOOS_AUTH_SUBMIT_FIELD" ]; then
+    PARAMS+=" --authSubmitField ${SOOS_AUTH_SUBMIT_FIELD}"
+fi
+if [ -n "$SOOS_AUTH_SUBMIT_ACTION" ]; then
+    PARAMS+=" --authSubmitAction ${SOOS_AUTH_SUBMIT_ACTION}"
+fi
+if [ -n "$SOOS_OAUTH_TOKEN_URL" ]; then
+    PARAMS+=" --oauthTokenUrl ${SOOS_OAUTH_TOKEN_URL}"
+fi
+if [ -n "$SOOS_OAUTH_PARAMETERS" ]; then
+    PARAMS+=" --oauthParameters ${SOOS_OAUTH_PARAMETERS}"
+fi
 python3 main.py ${SOOS_TARGET_URL} ${PARAMS}
