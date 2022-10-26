@@ -21,6 +21,11 @@ parameters:
     type: enum
     enum: ["baseline", "fullscan", "apiscan"]
     default: "baseline"
+  on_failure:
+    description: "Action to perform when the scan fails. Values available: fail_the_build, continue_on_failure (Default)"
+    type: enum
+    enum: ["fail_the_build", "continue_on_failure"]
+    default: "continue_on_failure"
   debug:
     description: Show debug messages
     type: boolean
@@ -139,6 +144,7 @@ steps:
       api_key: '<<parameters.api_key>>'
       project_name: '<<parameters.project_name>>'
       scan_mode: '<<parameters.scan_mode>>'
+      on_failure: '<<parameters.on_failure>>'
       debug: '<<parameters.debug>>'
       ajax_spider: '<<parameters.ajax_spider>>'
       api_base_url: '<<parameters.api_base_url>>'

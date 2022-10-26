@@ -20,6 +20,11 @@ parameters:
     type: enum
     enum: ["baseline", "fullscan", "apiscan"]
     default: "baseline"
+  on_failure:
+    description: "Action to perform when the scan fails. Values available: fail_the_build, continue_on_failure (Default)"
+    type: enum
+    enum: ["fail_the_build", "continue_on_failure"]
+    default: "continue_on_failure"
   debug:
     description: Show debug messages
     type: boolean
@@ -139,6 +144,7 @@ steps:
         SOOS_API_KEY_VAR_NAME: '<<parameters.api_key>>'
         SOOS_PROJECT_NAME: '<<parameters.project_name>>'
         SOOS_SCAN_MODE: '<<parameters.scan_mode>>'
+        SOOS_ON_FAILURE: '<<parameters.on_failure>>'
         SOOS_DEBUG: '<<parameters.debug>>'
         SOOS_AJAX_SPIDER: '<<parameters.ajax_spider>>'
         SOOS_API_BASE_URL: '<<parameters.api_base_url>>'

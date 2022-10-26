@@ -13,6 +13,7 @@ Currently, you can integrate the SOOS DAST Analysis with CircleCI using the [SOO
 | `api_key`         | Yes                         | SOOS API key                                                                                         |
 | `project_name`    | Yes                         | SOOS project name                                                                                    |
 | `api_url`         | Yes                         | SOOS API URL. By Default: `https://api.soos.io/api/`                                                 |
+| `on_failure`      |                             | Action to perform when the scan fails. Values available: fail_the_build, continue_on_failure (Default) |
 | `debug`           |                             | show debug messages                                                                                  |
 | `ajax_spider`     |                             | use the Ajax spider in addition to the traditional one                                               |
 | `rules`           |                             | rules file to use for `INFO`, `IGNORE` or `FAIL` warnings                                            |
