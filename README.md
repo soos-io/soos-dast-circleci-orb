@@ -13,6 +13,7 @@ Currently, you can integrate the SOOS DAST Analysis with CircleCI using the [SOO
 | `api_key`         | Yes                         | SOOS API key                                                                                         |
 | `project_name`    | Yes                         | SOOS project name                                                                                    |
 | `api_url`         | Yes                         | SOOS API URL. By Default: `https://api.soos.io/api/`                                                 |
+| `on_failure`      |                             | Action to perform when the scan fails. Values available: fail_the_build, continue_on_failure (Default) |
 | `debug`           |                             | show debug messages                                                                                  |
 | `ajax_spider`     |                             | use the Ajax spider in addition to the traditional one                                               |
 | `rules`           |                             | rules file to use for `INFO`, `IGNORE` or `FAIL` warnings                                            |
@@ -21,7 +22,7 @@ Currently, you can integrate the SOOS DAST Analysis with CircleCI using the [SOO
 | `scan_mode`       |                             | SOOS DAST scan mode. Values available: baseline (Default), fullscan, and apiscan                     |
 | `fullscan_minutes`| Required by `Full Analysis` | the number of minutes for spider to run                                                              |
 | `apiscan_format`  | Required by `API Analysis`  | target API format: `openapi`, `soap`, or `graphql`                                                   |
-| `level`           |                             | minimum level to show: `PASS`, `IGNORE`, `INFO`, `WARN` or `FAIL`                                    |
+| `level`           |                             | minimum level to show: `DEBUG`, `INFO`, `WARN`, `ERROR`, `CRITICAL`                                  |
 | `target_url`      | Yes                         | target URL including the protocol, eg https://www.example.com                                        |
 
 
