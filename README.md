@@ -4,7 +4,7 @@ The SOOS DAST Analysis for CircleCI implements the SOOS DAST Analysis's integrat
 
 ## How to Use
 
-Currently, you can integrate the SOOS DAST Analysis with CircleCI using the [SOOS DAST Analysis CircleCI Orb](https://circleci.com/developer/orbs) in your workflow file. 
+Currently, you can integrate the SOOS DAST Analysis with CircleCI using the [SOOS DAST Analysis CircleCI Orb](https://circleci.com/developer/orbs/orb/soos-io/dast) in your workflow file. 
 
 ### Parameters
 | Name              | Required                    | Description                                                                                          |
