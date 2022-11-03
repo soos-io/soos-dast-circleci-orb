@@ -59,10 +59,10 @@ parameters:
     enum: ["openapi", "soap", "graphql"]
     default: "openapi"
   level:
-    description: "Minimum level to show: PASS (Default), IGNORE, INFO, WARN or FAIL"
+    description: "Minimum level to show: DEBUG, INFO (default), WARN, ERROR, CRITICAL"
     type: enum
-    enum: ["PASS", "IGNORE", "INFO", "WARN", "FAIL"]
-    default: "PASS"
+    enum: ["DEBUG", "INFO", "WARN", "ERROR", "CRITICAL"]
+    default: "INFO"
   target_url:
     description: "Target URL including the protocol, eg https://www.example.com"
     type: string
