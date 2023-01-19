@@ -125,6 +125,18 @@ parameters:
     description: 'Submit button id to use in auth apps.'
     type: string
     default: ""
+  auth_second_submit_field:
+    description: 'Second submit button id to use in auth apps (for multi-page forms).'
+    type: string
+    default: ""
+  auth_form_type:
+    description: 'simple (all fields are displayed at once), wait_for_password (Password field is displayed only after username is filled), or multi_page (Password field is displayed only after username is filled and submit is clicked)'
+    type: string
+    default: ""
+  auth_delay_time:
+    description: 'Delay time in seconds to wait for the page to load after performing actions in the form. (Used only on authFormType: wait_for_password and multi_page)'
+    type: string
+    default: ""
   auth_submit_action:
     description: 'Submit action to perform on form filled. Possible values are click or submit.'
     type: string
@@ -170,6 +182,9 @@ steps:
         SOOS_AUTH_USERNAME_FIELD: '<<parameters.auth_username_field>>'
         SOOS_AUTH_PASSWORD_FIELD: '<<parameters.auth_password_field>>'
         SOOS_AUTH_SUBMIT_FIELD: '<<parameters.auth_submit_field>>'
+        SOOS_AUTH_SECOND_SUBMIT_FIELD: '<<parameters.auth_second_submit_field>>'
+        SOOS_AUTH_FORM_TYPE: '<<parameters.auth_form_type>>'
+        SOOS_AUTH_DELAY_TIME: '<<parameters.auth_delay_time>>'
         SOOS_AUTH_SUBMIT_ACTION: '<<parameters.auth_submit_action>>'
         SOOS_OAUTH_TOKEN_URL: '<<parameters.oauth_token_url>>'
         SOOS_OAUTH_PARAMETERS: '<<parameters.oauth_parameters>>'
