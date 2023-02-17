@@ -126,6 +126,18 @@ parameters:
     description: 'Submit button id to use in auth apps.'
     type: string
     default: ""
+  auth_second_submit_field:
+    description: 'Second submit button id to use in auth apps (for multi-page forms).'
+    type: string
+    default: ""
+  auth_form_type:
+    description: 'simple (all fields are displayed at once), wait_for_password (Password field is displayed only after username is filled), or multi_page (Password field is displayed only after username is filled and submit is clicked)'
+    type: string
+    default: ""
+  auth_delay_time:
+    description: 'Delay time in seconds to wait for the page to load after performing actions in the form. (Used only on authFormType: wait_for_password and multi_page)'
+    type: string
+    default: ""
   auth_submit_action:
     description: 'Submit action to perform on form filled. Possible values are click or submit.'
     type: string
@@ -169,6 +181,9 @@ steps:
       auth_username_field: '<<parameters.auth_username_field>>'
       auth_password_field: '<<parameters.auth_password_field>>'
       auth_submit_field: '<<parameters.auth_submit_field>>'
+      auth_second_submit_field: '<<parameters.auth_second_submit_field>>'
+      auth_form_type: '<<parameters.auth_form_type>>'
+      auth_delay_time: '<<parameters.auth_delay_time>>'
       auth_submit_action: '<<parameters.auth_submit_action>>'
       oauth_token_url: '<<parameters.oauth_token_url>>'
       oauth_parameters: '<<parameters.oauth_parameters>>'
