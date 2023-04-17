@@ -96,4 +96,7 @@ fi
 if [  -n "$SOOS_AUTH_DELAY_TIME" ]; then
     PARAMS+=" --authDelayTime ${SOOS_AUTH_DELAY_TIME}"
 fi
+if [ -n "$SOOS_DISABLE_RULES" ]; then
+    PARAMS+=" --disableRules ${SOOS_DISABLE_RULES}"
+fi
 python3 main.py ${SOOS_TARGET_URL} ${PARAMS}
