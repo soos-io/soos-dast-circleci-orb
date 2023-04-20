@@ -150,6 +150,10 @@ parameters:
     description: 'Parameters to be added to the oauth token request. (eg: client_id:value, client_secret:value, grant_type:value).'
     type: string
     default: ""
+  disable_rules:
+    description: 'Comma separated list of ZAP rules IDs to disable. List for reference https://www.zaproxy.org/docs/alerts/. (e.g. 10001,10002)'
+    type: string
+    default: ""
 steps:
   - run-dast-analysis:
       client_id: '<<parameters.client_id>>'
@@ -187,4 +191,5 @@ steps:
       auth_submit_action: '<<parameters.auth_submit_action>>'
       oauth_token_url: '<<parameters.oauth_token_url>>'
       oauth_parameters: '<<parameters.oauth_parameters>>'
+      disable_rules: '<<parameters.disable_rules>>'
 
