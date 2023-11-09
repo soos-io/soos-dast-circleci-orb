@@ -168,7 +168,6 @@ steps:
         SOOS_DEBUG: '<<parameters.debug>>'
         SOOS_AJAX_SPIDER: '<<parameters.ajax_spider>>'
         SOOS_API_BASE_URL: '<<parameters.api_base_url>>'
-        SOOS_RULES: '<<parameters.rules>>'
         SOOS_CONTEXT_FILE: '<<parameters.context_file>>'
         SOOS_FULL_SCAN_MINUTES: '<<parameters.fullscan_minutes>>'
         SOOS_API_SCAN_FORMAT: '<<parameters.apiscan_format>>'
