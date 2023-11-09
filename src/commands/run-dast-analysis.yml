@@ -37,16 +37,8 @@ parameters:
     description: SOOS API URL
     type: string
     default: "https://api.soos.io/api/"
-  rules:
-    description: rules file to use to INFO, IGNORE or FAIL warnings
-    type: string
-    default: ""
   context_file:
     description: context file which will be loaded prior to scanning the target
-    type: string
-    default: ""
-  context_user:
-    description: Username to use for authenticated scans - must be defined in the given context file
     type: string
     default: ""
   fullscan_minutes:
@@ -57,7 +49,7 @@ parameters:
     type: enum
     enum: ["openapi", "soap", "graphql"]
     default: "openapi"
-  level:
+  log_level:
     description: "Minimum level to show: DEBUG, INFO (default), WARN, ERROR, CRITICAL"
     type: enum
     enum: ["DEBUG", "INFO", "WARN", "ERROR", "CRITICAL"]
@@ -153,6 +145,18 @@ parameters:
     description: 'Comma separated list of ZAP rules IDs to disable. List for reference https://www.zaproxy.org/docs/alerts/. (e.g. 10001,10002)'
     type: string
     default: ""
+  auth_verification_url:
+    description: 'URL used to verify authentication success. If authentication fails when this URL is provided, the scan will be terminated.'
+    type: string
+    default: ""
+  other_options:
+    description: "Other command line arguments sent directly to the script for items not supported by other command line arguments"
+    type: string
+    default: ""
+  verbose:
+    description: 'Enables verbose logging.'
+    type: boolean
+    default: false
 steps:
   - run:
       environment:
@@ -166,10 +170,9 @@ steps:
         SOOS_API_BASE_URL: '<<parameters.api_base_url>>'
         SOOS_RULES: '<<parameters.rules>>'
         SOOS_CONTEXT_FILE: '<<parameters.context_file>>'
-        SOOS_CONTEXT_USER: '<<parameters.context_user>>'
         SOOS_FULL_SCAN_MINUTES: '<<parameters.fullscan_minutes>>'
         SOOS_API_SCAN_FORMAT: '<<parameters.apiscan_format>>'
-        SOOS_LEVEL: '<<parameters.level>>'
+        SOOS_LOG_LEVEL: '<<parameters.log_level>>'
         SOOS_TARGET_URL: '<<parameters.target_url>>'
         SOOS_BRANCH_URI: '<<parameters.branch_uri>>'
         SOOS_OPERATING_ENVIRONMENT: '<<parameters.operating_environment>>'
@@ -193,5 +196,8 @@ steps:
         SOOS_OAUTH_TOKEN_URL: '<<parameters.oauth_token_url>>'
         SOOS_OAUTH_PARAMETERS: '<<parameters.oauth_parameters>>'
         SOOS_DISABLE_RULES: '<<parameters.disable_rules>>'
+        SOOS_AUTH_VERIFICATION_URL: '<<parameters.auth_verification_url>>'
+        SOOS_OTHER_OPTIONS: '<<parameters.other_options>>'
+        SOOS_VERBOSE: '<<parameters.verbose>>'
       name: Run DAST SOOS Analysis
       command: <<include(scripts/run-dast.sh)>>
