@@ -85,10 +85,6 @@ parameters:
     description: GitHub Personal Authorization Token. Used by SARIF Report
     type: string
     default: ""
-  report_request_headers:
-    description: 'Include request/response headers data in report.'
-    type: boolean
-    default: true
   bearer_token:
     description: 'Bearer token to include as authorization header in every request.'
     type: string
@@ -180,7 +176,6 @@ steps:
         SOOS_REQUEST_HEADERS: '<<parameters.request_headers>>'
         SOOS_GENERATE_SARIF_REPORT: '<<parameters.sarif>>'
         SOOS_GITHUB_PAT: '<<parameters.github_pat>>'
-        SOOS_REPORT_REQUEST_HEADERS: '<<parameters.report_request_headers>>'
         SOOS_BEARER_TOKEN: '<<parameters.bearer_token>>'
         SOOS_AUTH_USERNAME: '<<parameters.auth_username>>'
         SOOS_AUTH_PASSWORD: '<<parameters.auth_password>>'
