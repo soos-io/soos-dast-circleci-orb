@@ -54,5 +54,4 @@ PARAMS=(
 [ -n "${SOOS_OTHER_OPTIONS}" ] && PARAMS+=("--otherOptions" "${SOOS_OTHER_OPTIONS}")
 [ -n "${SOOS_VERBOSE}" ] && PARAMS+=("--verbose")
 
-set -x
 node dist/index.js "${SOOS_TARGET_URL}" "${PARAMS[@]}"
