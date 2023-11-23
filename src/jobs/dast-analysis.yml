@@ -78,14 +78,6 @@ parameters:
     description: Set extra Header requests
     type: string
     default: ""
-  sarif:
-    description: Upload SARIF Report to GitHub
-    type: boolean
-    default: false
-  github_pat:
-    description: GitHub Personal Authorization Token. Used by SARIF Report
-    type: string
-    default: ""
   bearer_token:
     description: 'Bearer token to include as authorization header in every request.'
     type: string
@@ -174,7 +166,6 @@ steps:
       zap_options: '<<parameters.zap_options>>'
       request_cookies: '<<parameters.request_cookies>>'
       request_headers: '<<parameters.request_headers>>'
-      sarif: '<<parameters.sarif>>'
       bearer_token: '<<parameters.bearer_token>>'
       auth_username: '<<parameters.auth_username>>'
       auth_password: '<<parameters.auth_password>>'

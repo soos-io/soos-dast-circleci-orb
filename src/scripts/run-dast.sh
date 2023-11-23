@@ -33,7 +33,6 @@ PARAMS=(
     "${SOOS_ZAP_OPTIONS:+--zapOptions}" "${SOOS_ZAP_OPTIONS}"
     "${SOOS_REQUEST_COOKIES:+--requestCookies}" "${SOOS_REQUEST_COOKIES}"
     "${SOOS_REQUEST_HEADERS:+--requestHeaders}" "${SOOS_REQUEST_HEADERS}"
-    "${SOOS_GENERATE_SARIF_REPORT:+--sarif=True}" "--gpat" "${SOOS_GITHUB_PAT}"
     "${SOOS_BEARER_TOKEN:+--bearerToken}" "${SOOS_BEARER_TOKEN}"
     "${SOOS_AUTH_USERNAME:+--authUsername}" "${SOOS_AUTH_USERNAME}"
     "${SOOS_AUTH_PASSWORD:+--authPassword}" "${SOOS_AUTH_PASSWORD}"
