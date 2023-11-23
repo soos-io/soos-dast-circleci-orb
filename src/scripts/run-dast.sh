@@ -23,7 +23,7 @@ PARAMS=(
 
 # Add optional parameters only if they are set and non-empty
 [ -n "${SOOS_DEBUG}" ] && PARAMS+=("--debug")
-[ -n "${SOOS_AJAX_SPIDER}" ] && PARAMS+=("--ajaxSpider" "${SOOS_AJAX_SPIDER}")
+[ -n "${SOOS_AJAX_SPIDER}" ] && PARAMS+=("--ajaxspider")
 [ -n "${SOOS_RULES}" ] && PARAMS+=("--rules" "${SOOS_RULES}")
 [ -n "${SOOS_CONTEXT_FILE}" ] && PARAMS+=("--contextFile" "${SOOS_CONTEXT_FILE}")
 [ -n "${SOOS_FULL_SCAN_MINUTES}" ] && PARAMS+=("--fullScanMinutes" "${SOOS_FULL_SCAN_MINUTES}")
