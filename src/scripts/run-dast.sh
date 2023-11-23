@@ -53,4 +53,4 @@ PARAMS=(
     ${SOOS_VERBOSE:+--verbose}
 )
 
-node dist/index.js "${SOOS_TARGET_URL}" ${PARAMS[@]}
+node dist/index.js "${SOOS_TARGET_URL}" "${PARAMS[@]}"
