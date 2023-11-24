@@ -43,4 +43,5 @@ PARAMS="--clientId ${!SOOS_CLIENT_ID_VAR_NAME} --apiKey ${!SOOS_API_KEY_VAR_NAME
 [ "${SOOS_VERBOSE}" ] && PARAMS+=" --verbose"
 
 set -x
-node dist/index.js "${SOOS_TARGET_URL}" "${PARAMS[@]}"
+# shellcheck disable=SC2086
+node dist/index.js "${SOOS_TARGET_URL}" $PARAMS
