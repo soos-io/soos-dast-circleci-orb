@@ -42,5 +42,5 @@ PARAMS="--clientId ${!SOOS_CLIENT_ID_VAR_NAME} --apiKey ${!SOOS_API_KEY_VAR_NAME
 [ -n "${SOOS_OTHER_OPTIONS}" ] && PARAMS+=" --otherOptions ${SOOS_OTHER_OPTIONS}"
 [ "${SOOS_VERBOSE}" -eq 1 ] && PARAMS+=" --verbose"
 
-# Execute the command with parameters
+set -x
 node dist/index.js "${SOOS_TARGET_URL}" "${PARAMS}"
