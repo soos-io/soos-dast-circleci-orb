@@ -22,8 +22,8 @@ PARAMS=(
 )
 
 # Add optional parameters only if they are set and non-empty
-[ "${SOOS_DEBUG}" ] && PARAMS+=("--debug")
-[ "${SOOS_AJAX_SPIDER}" ] && PARAMS+=("--ajaxSpider")
+[ "${SOOS_DEBUG}" = "true" ] && PARAMS+=("--debug")
+[ "${SOOS_AJAX_SPIDER}" = "true" ] && PARAMS+=("--ajaxSpider")
 [ -n "${SOOS_RULES}" ] && PARAMS+=("--rules" "${SOOS_RULES}")
 [ -n "${SOOS_CONTEXT_FILE}" ] && PARAMS+=("--contextFile" "${SOOS_CONTEXT_FILE}")
 [ -n "${SOOS_FULL_SCAN_MINUTES}" ] && PARAMS+=("--fullScanMinutes" "${SOOS_FULL_SCAN_MINUTES}")
@@ -52,7 +52,7 @@ PARAMS=(
 [ -n "${SOOS_DISABLE_RULES}" ] && PARAMS+=("--disableRules" "${SOOS_DISABLE_RULES}")
 [ -n "${SOOS_AUTH_VERIFICATION_URL}" ] && PARAMS+=("--authVerificationURL" "${SOOS_AUTH_VERIFICATION_URL}")
 [ -n "${SOOS_OTHER_OPTIONS}" ] && PARAMS+=("--otherOptions" "${SOOS_OTHER_OPTIONS}")
-[ "${SOOS_VERBOSE}" ] && PARAMS+=("--verbose")
+[ "${SOOS_VERBOSE}" = "true"] && PARAMS+=("--verbose")
 
 set -x
 node dist/index.js "${SOOS_TARGET_URL}" "${PARAMS[@]}"
