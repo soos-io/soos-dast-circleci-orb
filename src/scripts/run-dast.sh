@@ -21,7 +21,6 @@ PARAMS=(
     "--branchName" "${CIRCLE_BRANCH}"
 )
 
-# Add optional parameters only if they are set and non-empty
 [ "${SOOS_DEBUG}" -eq 1 ] && PARAMS+=("--debug")
 [ "${SOOS_AJAX_SPIDER}" -eq 1 ] && PARAMS+=("--ajaxSpider")
 [ -n "${SOOS_RULES}" ] && PARAMS+=("--rules" "${SOOS_RULES}")
@@ -61,5 +60,4 @@ fi
 
 [ "${SOOS_VERBOSE}" -eq 1 ] && PARAMS+=("--verbose")
 
-set -x
 node dist/index.js "${SOOS_TARGET_URL}" "${PARAMS[@]}"
