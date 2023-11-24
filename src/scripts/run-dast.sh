@@ -52,7 +52,7 @@ PARAMS=(
 [ -n "${SOOS_DISABLE_RULES}" ] && PARAMS+=("--disableRules" "${SOOS_DISABLE_RULES}")
 [ -n "${SOOS_AUTH_VERIFICATION_URL}" ] && PARAMS+=("--authVerificationURL" "${SOOS_AUTH_VERIFICATION_URL}")
 [ -n "${SOOS_OTHER_OPTIONS}" ] && PARAMS+=("--otherOptions" "${SOOS_OTHER_OPTIONS}")
-[ "${SOOS_VERBOSE}" = "true"] && PARAMS+=("--verbose")
+[ "${SOOS_VERBOSE}" = "true" ] && PARAMS+=("--verbose")
 
 set -x
 node dist/index.js "${SOOS_TARGET_URL}" "${PARAMS[@]}"
