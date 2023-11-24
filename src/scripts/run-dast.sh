@@ -51,7 +51,14 @@ PARAMS=(
 [ -n "${SOOS_AUTH_DELAY_TIME}" ] && PARAMS+=("--authDelayTime" "${SOOS_AUTH_DELAY_TIME}")
 [ -n "${SOOS_DISABLE_RULES}" ] && PARAMS+=("--disableRules" "${SOOS_DISABLE_RULES}")
 [ -n "${SOOS_AUTH_VERIFICATION_URL}" ] && PARAMS+=("--authVerificationURL" "${SOOS_AUTH_VERIFICATION_URL}")
-[ -n "${SOOS_OTHER_OPTIONS}" ] && PARAMS+=("--otherOptions" "${SOOS_OTHER_OPTIONS}")
+if [[ -n "${SOOS_OTHER_OPTIONS}" ]]; then
+    if [[ "${SOOS_OTHER_OPTIONS}" =~ [[:space:]] ]]; then
+        PARAMS+=("--otherOptions" "${SOOS_OTHER_OPTIONS}")
+    else
+        PARAMS+=("--otherOptions" "\"${SOOS_OTHER_OPTIONS}\"")
+    fi
+fi
+
 [ "${SOOS_VERBOSE}" = "true" ] && PARAMS+=("--verbose")
 
 set -x
