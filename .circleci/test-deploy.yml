@@ -18,7 +18,7 @@ jobs:
         - dast/run-dast-analysis:
             project_name: "test-circleci"
             api_base_url: "https://qa-api.soos.io/api/"
-            target_url: "https://joaquinalvarez.dev
+            target_url: "https://joaquinalvarez.dev"
 workflows:
   test-deploy:
     jobs:
