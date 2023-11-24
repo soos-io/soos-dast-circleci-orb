@@ -19,6 +19,7 @@ jobs:
             project_name: "test circleci"
             api_base_url: "https://qa-api.soos.io/api/"
             target_url: "https://joaquinalvarez.dev"
+            other_options: "-d"
 workflows:
   test-deploy:
     jobs:
