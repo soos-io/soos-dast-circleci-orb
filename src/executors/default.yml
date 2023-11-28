@@ -4,7 +4,7 @@ docker:
   - image: 'soosio/dast:<<parameters.tag>>'
 parameters:
   tag:
-    default: "alpha"
+    default: "latest"
     type: string
     description: >
       Pick a specific version of soosio/dast:
