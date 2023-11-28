@@ -38,16 +38,8 @@ parameters:
     description: SOOS API URL
     type: string
     default: "https://api.soos.io/api/"
-  rules:
-    description: rules file to use to INFO, IGNORE or FAIL warnings
-    type: string
-    default: ""
   context_file:
     description: context file which will be loaded prior to scanning the target
-    type: string
-    default: ""
-  context_user:
-    description: Username to use for authenticated scans - must be defined in the given context file
     type: string
     default: ""
   fullscan_minutes:
@@ -58,7 +50,7 @@ parameters:
     type: enum
     enum: ["openapi", "soap", "graphql"]
     default: "openapi"
-  level:
+  log_level:
     description: "Minimum level to show: DEBUG, INFO (default), WARN, ERROR, CRITICAL"
     type: enum
     enum: ["DEBUG", "INFO", "WARN", "ERROR", "CRITICAL"]
@@ -86,18 +78,6 @@ parameters:
     description: Set extra Header requests
     type: string
     default: ""
-  sarif:
-    description: Upload SARIF Report to GitHub
-    type: boolean
-    default: false
-  github_pat:
-    description: GitHub Personal Authorization Token. Used by SARIF Report
-    type: string
-    default: ""
-  report_request_headers:
-    description: 'Include request/response headers data in report.'
-    type: boolean
-    default: true
   bearer_token:
     description: 'Bearer token to include as authorization header in every request.'
     type: string
@@ -154,6 +134,18 @@ parameters:
     description: 'Comma separated list of ZAP rules IDs to disable. List for reference https://www.zaproxy.org/docs/alerts/. (e.g. 10001,10002)'
     type: string
     default: ""
+  auth_verification_url:
+    description: 'URL used to verify authentication success. If authentication fails when this URL is provided, the scan will be terminated.'
+    type: string
+    default: ""
+  other_options:
+    description: "Other command line arguments sent directly to the script for items not supported by other command line arguments"
+    type: string
+    default: ""
+  verbose:
+    description: 'Enables verbose logging.'
+    type: boolean
+    default: false
 steps:
   - run-dast-analysis:
       client_id: '<<parameters.client_id>>'
@@ -164,20 +156,16 @@ steps:
       debug: '<<parameters.debug>>'
       ajax_spider: '<<parameters.ajax_spider>>'
       api_base_url: '<<parameters.api_base_url>>'
-      rules: '<<parameters.rules>>'
       context_file: '<<parameters.context_file>>'
-      context_user: '<<parameters.context_user>>'
       fullscan_minutes: '<<parameters.fullscan_minutes>>'
       apiscan_format: '<<parameters.apiscan_format>>'
-      level: '<<parameters.level>>'
+      log_level: '<<parameters.log_level>>'
       target_url: '<<parameters.target_url>>'
       branch_uri: '<<parameters.branch_uri>>'
       operating_environment: '<<parameters.operating_environment>>'
       zap_options: '<<parameters.zap_options>>'
       request_cookies: '<<parameters.request_cookies>>'
       request_headers: '<<parameters.request_headers>>'
-      sarif: '<<parameters.sarif>>'
-      report_request_headers: '<<parameters.report_request_headers>>'
       bearer_token: '<<parameters.bearer_token>>'
       auth_username: '<<parameters.auth_username>>'
       auth_password: '<<parameters.auth_password>>'
@@ -192,4 +180,7 @@ steps:
       oauth_token_url: '<<parameters.oauth_token_url>>'
       oauth_parameters: '<<parameters.oauth_parameters>>'
       disable_rules: '<<parameters.disable_rules>>'
+      auth_verification_url: '<<parameters.auth_verification_url>>'
+      other_options: '<<parameters.other_options>>'
+      verbose: '<<parameters.verbose>>'
 

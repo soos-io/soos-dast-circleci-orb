@@ -22,21 +22,25 @@ You can integrate the SOOS DAST Analysis with CircleCI using the [SOOS DAST Anal
 | `on_failure`      |                             | Action to perform when the scan fails. Values available: fail_the_build, continue_on_failure (Default) |
 | `debug`           |                             | show debug messages                                                                                  |
 | `ajax_spider`     |                             | use the Ajax spider in addition to the traditional one                                               |
-| `rules`           |                             | rules file to use for `INFO`, `IGNORE` or `FAIL` warnings                                            |
 | `context_file`    |                             | context file which will be loaded prior to scanning the target. Required for authenticated URLs      |
-| `context_user`    |                             | username to use for authenticated scans - must be defined in the given context file                  |
 | `scan_mode`       |                             | SOOS DAST scan mode. Values available: baseline (Default), fullscan, and apiscan                     |
 | `fullscan_minutes`| Required by `Full Analysis` | the number of minutes for spider to run                                                              |
 | `apiscan_format`  | Required by `API Analysis`  | target API format: `openapi`, `soap`, or `graphql`                                                   |
-| `level`           |                             | minimum level to show: `DEBUG`, `INFO`, `WARN`, `ERROR`, `CRITICAL`                                  |
+| `log_level`           |                             | minimum level to show: `DEBUG`, `INFO`, `WARN`, `ERROR`, `CRITICAL`                                  |
 | `target_url`      | Yes                         | target URL including the protocol, eg https://www.example.com                                        |
 
 
 ### Jobs
 There's currently one main Job called dast-analysis which you can cofigure to perform a scan in three diferent ways:
-- [Baseline Analysis](#baseline-analysis)
-- [Full Analysis](#full-analysis)
-- [API Analysis](#api-analysis)
+- [SOOS DAST for Circle CI](#soos-dast-for-circle-ci)
+  - [soos-dast-circleci-orb](#soos-dast-circleci-orb)
+    - [Parameters](#parameters)
+    - [Jobs](#jobs)
+      - [Baseline Analysis](#baseline-analysis)
+      - [Full Analysis](#full-analysis)
+      - [API Analysis](#api-analysis)
+  - [References](#references)
+    - [How to Publish An Update](#how-to-publish-an-update)
 
 #### Baseline Analysis
 It runs the [ZAP](https://www.zaproxy.org/) spider against the specified target for (by default) 1 minute and then waits for the passive scanning to complete before reporting the results.
@@ -67,12 +71,10 @@ jobs:
           debug: true
           ajax_spider: true
           api_base_url: 'https://api.soos-io/api/'
-          rules: '...'
           context_file: '...'
-          context_user: '...'
           fullscan_minutes: '...'
           apiscan_format: '...'
-          level: '...'
+          log_level: '...'
           target_url: '...'
 ```
 
@@ -103,11 +105,9 @@ jobs:
           debug: true
           ajax_spider: true
           api_base_url: 'https://api.soos-io/api/'
-          rules: '...'
           context_file: '...'
-          context_user: '...'
           fullscan_minutes: '...'
-          level: '...'
+          log_level: '...'
           target_url: '...'
 ```
 
@@ -140,11 +140,9 @@ jobs:
           debug: true
           ajax_spider: true
           api_base_url: 'https://api.soos-io/api/'
-          rules: '...'
           context_file: '...'
-          context_user: '...'
           apiscan_format: 'openapi'
-          level: '...'
+          logLevel: '...'
           target_url: '...'
 ```
 
