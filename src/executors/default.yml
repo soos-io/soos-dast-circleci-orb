@@ -1,13 +1,11 @@
 description: >
   This executor uses our own Docker Image to perform the DAST scan.
 docker:
-  - image: 'soosio/dast:<<parameters.tag>>'
+  - image: "soosio/dast:<<parameters.tag>>"
 parameters:
   tag:
     default: "alpha"
     type: string
     description: >
-      Pick a specific version of soosio/dast:
+      Choose a specific version of soosio/dast:
       https://hub.docker.com/r/soosio/dast/tags
-
-
