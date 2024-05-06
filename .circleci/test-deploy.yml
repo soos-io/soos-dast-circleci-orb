@@ -12,7 +12,7 @@ jobs:
     # You may want to add additional validation steps to ensure the commands are working as expected.
     command-tests:
       docker:
-        - image: soosio/dast:beta
+        - image: soosio/dast:latest
       steps:
         - checkout
         - dast/run-dast-analysis:
