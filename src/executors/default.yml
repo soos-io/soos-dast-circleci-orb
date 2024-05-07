@@ -7,7 +7,7 @@ parameters:
     default: "beta"
     type: string
     description: >
-      Pick a specific version of soosio/dast:
+      Choose a specific version of soosio/dast:
       https://hub.docker.com/r/soosio/dast/tags
 
 
