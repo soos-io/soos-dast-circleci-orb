@@ -59,7 +59,7 @@ parameters:
     description: "Target URL including the protocol, eg https://www.example.com"
     type: string
   branch_name:
-    description: 'Branch Name to create scan under'
+    description: 'Set the branch name'
     type: string
     default: ""
   branch_uri:
