@@ -1,5 +1,5 @@
 description: >
-  Calls the Dast scan command to perform the analysis.
+  Calls the DAST scan command to perform the analysis.
 
 executor: default
 
@@ -27,7 +27,7 @@ parameters:
     enum: ["fail_the_build", "continue_on_failure"]
     default: "continue_on_failure"
   debug:
-    description: Show debug messages
+    description: Show ZAP debug messages
     type: boolean
     default: false
   ajax_spider:
@@ -58,6 +58,10 @@ parameters:
   target_url:
     description: "Target URL including the protocol, eg https://www.example.com"
     type: string
+  branch_name:
+    description: 'Branch Name to create scan under'
+    type: string
+    default: ""
   branch_uri:
     description: Set the branch URI
     type: string
@@ -143,7 +147,7 @@ parameters:
     type: string
     default: ""
   verbose:
-    description: 'Enables verbose logging.'
+    description: 'DEPREACTED - This parameter has no effect. Set log_level to DEBUG to achieve the same effect.'
     type: boolean
     default: false
 steps:
@@ -161,6 +165,7 @@ steps:
       apiscan_format: '<<parameters.apiscan_format>>'
       log_level: '<<parameters.log_level>>'
       target_url: '<<parameters.target_url>>'
+      branch_name: '<<parameters.branch_name>>'
       branch_uri: '<<parameters.branch_uri>>'
       operating_environment: '<<parameters.operating_environment>>'
       zap_options: '<<parameters.zap_options>>'
@@ -182,5 +187,3 @@ steps:
       disable_rules: '<<parameters.disable_rules>>'
       auth_verification_url: '<<parameters.auth_verification_url>>'
       other_options: '<<parameters.other_options>>'
-      verbose: '<<parameters.verbose>>'
-
