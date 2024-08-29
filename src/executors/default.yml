@@ -1,5 +1,5 @@
 description: >
-  This executor uses our own Docker Image to perform the DAST scan.
+  This executor uses our the SOOS DAST Docker Image to perform the scan.
 docker:
   - image: 'soosio/dast:<<parameters.tag>>'
 parameters:
