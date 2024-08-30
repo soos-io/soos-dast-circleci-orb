@@ -26,7 +26,7 @@ parameters:
     enum: ["fail_the_build", "continue_on_failure"]
     default: "continue_on_failure"
   debug:
-    description: Show debug messages
+    description: Show ZAP debug messages
     type: boolean
     default: false
   ajax_spider:
@@ -57,6 +57,10 @@ parameters:
   target_url:
     description: "Target URL including the protocol, eg https://www.example.com"
     type: string
+  branch_name:
+    description: Set the branch name
+    type: string
+    default: ""
   branch_uri:
     description: Set the branch URI
     type: string
@@ -142,7 +146,7 @@ parameters:
     type: string
     default: ""
   verbose:
-    description: 'Enables verbose logging.'
+    description: 'DEPRECATED - This parameter has no effect. Set log_level to DEBUG for the same effect.'
     type: boolean
     default: false
 steps:
@@ -161,6 +165,7 @@ steps:
         SOOS_API_SCAN_FORMAT: '<<parameters.apiscan_format>>'
         SOOS_LOG_LEVEL: '<<parameters.log_level>>'
         SOOS_TARGET_URL: '<<parameters.target_url>>'
+        SOOS_BRANCH_NAME: '<<parameters.branch_name>>'
         SOOS_BRANCH_URI: '<<parameters.branch_uri>>'
         SOOS_OPERATING_ENVIRONMENT: '<<parameters.operating_environment>>'
         SOOS_ZAP_OPTIONS: '<<parameters.zap_options>>'
@@ -182,6 +187,5 @@ steps:
         SOOS_DISABLE_RULES: '<<parameters.disable_rules>>'
         SOOS_AUTH_VERIFICATION_URL: '<<parameters.auth_verification_url>>'
         SOOS_OTHER_OPTIONS: '<<parameters.other_options>>'
-        SOOS_VERBOSE: '<<parameters.verbose>>'
       name: Run DAST SOOS Analysis
       command: <<include(scripts/run-dast.sh)>>

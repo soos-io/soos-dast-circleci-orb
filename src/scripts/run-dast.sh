@@ -8,6 +8,8 @@ if [ -z "$SOOS_PROJECT_NAME" ]; then
     SOOS_PROJECT_NAME="${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"
 fi
 
+SOOS_BRANCH_NAME=${SOOS_BRANCH_NAME:-${CIRCLE_BRANCH}}
+
 PARAMS=(
     "--clientId" "${!SOOS_CLIENT_ID_VAR_NAME}"
     "--apiKey" "${!SOOS_API_KEY_VAR_NAME}"
@@ -18,7 +20,7 @@ PARAMS=(
     "--integrationName" "$SOOS_INTEGRATION_NAME"
     "--integrationType" "$SOOS_INTEGRATION_TYPE"
     "--commitHash" "${CIRCLE_SHA1}"
-    "--branchName" "${CIRCLE_BRANCH}"
+    "--branchName" "${SOOS_BRANCH_NAME}"
 )
 
 [ "${SOOS_DEBUG}" -eq 1 ] && PARAMS+=("--debug")
@@ -57,7 +59,5 @@ if [[ -n "${SOOS_OTHER_OPTIONS}" ]]; then
         PARAMS+=("--otherOptions" "\"${SOOS_OTHER_OPTIONS}\"")
     fi
 fi
-
-[ "${SOOS_VERBOSE}" -eq 1 ] && PARAMS+=("--verbose")
 
 node dist/index.js "${SOOS_TARGET_URL}" "${PARAMS[@]}"
