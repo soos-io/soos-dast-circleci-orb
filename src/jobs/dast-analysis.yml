@@ -187,3 +187,4 @@ steps:
       disable_rules: '<<parameters.disable_rules>>'
       auth_verification_url: '<<parameters.auth_verification_url>>'
       other_options: '<<parameters.other_options>>'
+      verbose: '<<parameters.verbose>>'
