@@ -23,6 +23,10 @@ PARAMS=(
     "--branchName" "${SOOS_BRANCH_NAME}"
 )
 
+if [  "$SOOS_VERBOSE" -eq 1 ]; then
+    PARAMS+=("--verbose")
+fi
+
 [ "${SOOS_DEBUG}" -eq 1 ] && PARAMS+=("--debug")
 [ "${SOOS_AJAX_SPIDER}" -eq 1 ] && PARAMS+=("--ajaxSpider")
 [ -n "${SOOS_RULES}" ] && PARAMS+=("--rules" "${SOOS_RULES}")

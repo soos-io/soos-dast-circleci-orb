@@ -187,5 +187,6 @@ steps:
         SOOS_DISABLE_RULES: '<<parameters.disable_rules>>'
         SOOS_AUTH_VERIFICATION_URL: '<<parameters.auth_verification_url>>'
         SOOS_OTHER_OPTIONS: '<<parameters.other_options>>'
+        SOOS_VERBOSE: '<<parameters.verbose>>'
       name: Run DAST SOOS Analysis
       command: <<include(scripts/run-dast.sh)>>
