@@ -51,9 +51,9 @@ parameters:
     enum: ["openapi", "soap", "graphql"]
     default: "openapi"
   log_level:
-    description: "Minimum level to show: DEBUG, INFO (default), WARN, ERROR, CRITICAL"
+    description: "Minimum level to show: DEBUG, INFO, WARN, FAIL, ERROR"
     type: enum
-    enum: ["DEBUG", "INFO", "WARN", "ERROR", "CRITICAL"]
+    enum: ["DEBUG", "INFO", "WARN", "FAIL", "ERROR"]
     default: "INFO"
   target_url:
     description: "Target URL including the protocol, eg https://www.example.com"
