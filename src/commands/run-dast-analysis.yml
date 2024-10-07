@@ -73,10 +73,6 @@ parameters:
     description: ZAP Additional Options
     type: string
     default: ""
-  request_cookies:
-    description: Set Cookie values for the requests to the target URL
-    type: string
-    default: ""
   request_headers:
     description: Set extra Header requests
     type: string
@@ -145,10 +141,6 @@ parameters:
     description: "Other command line arguments sent directly to the script for items not supported by other command line arguments"
     type: string
     default: ""
-  verbose:
-    description: 'DEPRECATED - This parameter has no effect. Set log_level to DEBUG for the same effect.'
-    type: boolean
-    default: false
 steps:
   - run:
       environment:
@@ -169,7 +161,6 @@ steps:
         SOOS_BRANCH_URI: '<<parameters.branch_uri>>'
         SOOS_OPERATING_ENVIRONMENT: '<<parameters.operating_environment>>'
         SOOS_ZAP_OPTIONS: '<<parameters.zap_options>>'
-        SOOS_REQUEST_COOKIES: '<<parameters.request_cookies>>'
         SOOS_REQUEST_HEADERS: '<<parameters.request_headers>>'
         SOOS_BEARER_TOKEN: '<<parameters.bearer_token>>'
         SOOS_AUTH_USERNAME: '<<parameters.auth_username>>'
@@ -187,6 +178,5 @@ steps:
         SOOS_DISABLE_RULES: '<<parameters.disable_rules>>'
         SOOS_AUTH_VERIFICATION_URL: '<<parameters.auth_verification_url>>'
         SOOS_OTHER_OPTIONS: '<<parameters.other_options>>'
-        SOOS_VERBOSE: '<<parameters.verbose>>'
       name: Run DAST SOOS Analysis
       command: <<include(scripts/run-dast.sh)>>
