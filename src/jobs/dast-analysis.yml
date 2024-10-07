@@ -74,10 +74,6 @@ parameters:
     description: ZAP Additional Options
     type: string
     default: ""
-  request_cookies:
-    description: Set Cookie values for the requests to the target URL
-    type: string
-    default: ""
   request_headers:
     description: Set extra Header requests
     type: string
@@ -146,10 +142,6 @@ parameters:
     description: "Other command line arguments sent directly to the script for items not supported by other command line arguments"
     type: string
     default: ""
-  verbose:
-    description: 'DEPREACTED - This parameter has no effect. Set log_level to DEBUG to achieve the same effect.'
-    type: boolean
-    default: false
 steps:
   - run-dast-analysis:
       client_id: '<<parameters.client_id>>'
@@ -169,7 +161,6 @@ steps:
       branch_uri: '<<parameters.branch_uri>>'
       operating_environment: '<<parameters.operating_environment>>'
       zap_options: '<<parameters.zap_options>>'
-      request_cookies: '<<parameters.request_cookies>>'
       request_headers: '<<parameters.request_headers>>'
       bearer_token: '<<parameters.bearer_token>>'
       auth_username: '<<parameters.auth_username>>'
@@ -187,4 +178,3 @@ steps:
       disable_rules: '<<parameters.disable_rules>>'
       auth_verification_url: '<<parameters.auth_verification_url>>'
       other_options: '<<parameters.other_options>>'
-      verbose: '<<parameters.verbose>>'

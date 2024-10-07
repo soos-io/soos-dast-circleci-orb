@@ -145,10 +145,6 @@ parameters:
     description: "Other command line arguments sent directly to the script for items not supported by other command line arguments"
     type: string
     default: ""
-  verbose:
-    description: 'DEPRECATED - This parameter has no effect. Set log_level to DEBUG for the same effect.'
-    type: boolean
-    default: false
 steps:
   - run:
       environment:
@@ -187,6 +183,5 @@ steps:
         SOOS_DISABLE_RULES: '<<parameters.disable_rules>>'
         SOOS_AUTH_VERIFICATION_URL: '<<parameters.auth_verification_url>>'
         SOOS_OTHER_OPTIONS: '<<parameters.other_options>>'
-        SOOS_VERBOSE: '<<parameters.verbose>>'
       name: Run DAST SOOS Analysis
       command: <<include(scripts/run-dast.sh)>>

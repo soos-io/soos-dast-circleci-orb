@@ -23,10 +23,6 @@ PARAMS=(
     "--branchName" "${SOOS_BRANCH_NAME}"
 )
 
-if [  "$SOOS_VERBOSE" -eq 1 ]; then
-    PARAMS+=("--verbose")
-fi
-
 [ "${SOOS_DEBUG}" -eq 1 ] && PARAMS+=("--debug")
 [ "${SOOS_AJAX_SPIDER}" -eq 1 ] && PARAMS+=("--ajaxSpider")
 [ -n "${SOOS_RULES}" ] && PARAMS+=("--rules" "${SOOS_RULES}")
@@ -39,7 +35,6 @@ fi
 [ -n "${SOOS_BUILD_VERSION}" ] && PARAMS+=("--buildVersion" "${SOOS_BUILD_VERSION}")
 [ -n "${SOOS_OPERATING_ENVIRONMENT}" ] && PARAMS+=("--operatingEnvironment" "${SOOS_OPERATING_ENVIRONMENT}")
 [ -n "${SOOS_ZAP_OPTIONS}" ] && PARAMS+=("--zapOptions" "${SOOS_ZAP_OPTIONS}")
-[ -n "${SOOS_REQUEST_COOKIES}" ] && PARAMS+=("--requestCookies" "${SOOS_REQUEST_COOKIES}")
 [ -n "${SOOS_REQUEST_HEADERS}" ] && PARAMS+=("--requestHeaders" "${SOOS_REQUEST_HEADERS}")
 [ -n "${SOOS_BEARER_TOKEN}" ] && PARAMS+=("--bearerToken" "${SOOS_BEARER_TOKEN}")
 [ -n "${SOOS_AUTH_USERNAME}" ] && PARAMS+=("--authUsername" "${SOOS_AUTH_USERNAME}")
