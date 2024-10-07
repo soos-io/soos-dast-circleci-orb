@@ -73,10 +73,6 @@ parameters:
     description: ZAP Additional Options
     type: string
     default: ""
-  request_cookies:
-    description: Set Cookie values for the requests to the target URL
-    type: string
-    default: ""
   request_headers:
     description: Set extra Header requests
     type: string
@@ -165,7 +161,6 @@ steps:
         SOOS_BRANCH_URI: '<<parameters.branch_uri>>'
         SOOS_OPERATING_ENVIRONMENT: '<<parameters.operating_environment>>'
         SOOS_ZAP_OPTIONS: '<<parameters.zap_options>>'
-        SOOS_REQUEST_COOKIES: '<<parameters.request_cookies>>'
         SOOS_REQUEST_HEADERS: '<<parameters.request_headers>>'
         SOOS_BEARER_TOKEN: '<<parameters.bearer_token>>'
         SOOS_AUTH_USERNAME: '<<parameters.auth_username>>'
