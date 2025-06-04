@@ -45,7 +45,7 @@ There's currently one main Job called dast-analysis which you can cofigure to pe
 #### Baseline Analysis
 It runs the [ZAP](https://www.zaproxy.org/) spider against the specified target for (by default) 1 minute and then waits for the passive scanning to complete before reporting the results.
 
-This means that the script doesn't perform any actual ‘attacks’ and will run for a relatively short period of time (a few minutes at most).
+This means that the CLI doesn't perform any actual ‘attacks’ and will run for a relatively short period of time (a few minutes at most).
 
 By default, it reports all alerts as WARNings but you can specify a config file which can change any rules to `FAIL` or `IGNORE`.
 
@@ -81,7 +81,7 @@ jobs:
 #### Full Analysis
 It runs the [ZAP](https://www.zaproxy.org/) spider against the specified target (by default with no time limit) followed by an optional ajax spider scan and then a full active scan before reporting the results.
 
-This means that the script does perform actual ‘attacks’ and can potentially run for a long period of time.
+This means that the CLI does perform actual ‘attacks’ and can potentially run for a long period of time.
 
 By default, it reports all alerts as WARNings but you can specify a config file which can change any rules to FAIL or IGNORE. The configuration works in a very similar way as the [Baseline Analysis](#baseline-analysis)
 
