@@ -122,14 +122,6 @@ parameters:
     description: 'Submit action to perform on form filled. Possible values are click or submit.'
     type: string
     default: ""
-  oauth_token_url:
-    description: 'The fully qualified authentication URL that grants the access_token.'
-    type: string
-    default: ""
-  oauth_parameters:
-    description: 'Parameters to be added to the oauth token request. (eg: client_id:value, client_secret:value, grant_type:value).'
-    type: string
-    default: ""
   disable_rules:
     description: 'Comma separated list of ZAP rules IDs to disable. List for reference https://www.zaproxy.org/docs/alerts/. (e.g. 10001,10002)'
     type: string
@@ -173,8 +165,6 @@ steps:
       auth_form_type: '<<parameters.auth_form_type>>'
       auth_delay_time: '<<parameters.auth_delay_time>>'
       auth_submit_action: '<<parameters.auth_submit_action>>'
-      oauth_token_url: '<<parameters.oauth_token_url>>'
-      oauth_parameters: '<<parameters.oauth_parameters>>'
       disable_rules: '<<parameters.disable_rules>>'
       auth_verification_url: '<<parameters.auth_verification_url>>'
       other_options: '<<parameters.other_options>>'
