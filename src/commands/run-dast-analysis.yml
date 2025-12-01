@@ -170,3 +170,4 @@ steps:
         SOOS_OTHER_OPTIONS: '<<parameters.other_options>>'
       name: Run DAST SOOS Analysis
       command: <<include(scripts/run-dast.sh)>>
+      no_output_timeout: 0
